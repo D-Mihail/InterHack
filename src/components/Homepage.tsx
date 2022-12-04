@@ -16,9 +16,6 @@ export const Homepage = () => {
   const handleOnBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     setUserInput(e.target.value);
   };
-  //   let today = new Date().toLocaleDateString();
-
-  //   console.log(today);
 
   //   useEffect(() => {
   //     axios("https:/pnl/${userInput}/${dateFrom}/${dateTo}")
@@ -59,11 +56,9 @@ export const Homepage = () => {
               <input
                 name="fDateFrom"
                 id="fDateFrom"
-                type="date"
+                type="text"
                 className="form-control-sm"
                 value={dateFrom}
-                min="2022-02-20"
-                max="2032-02-20"
                 onChange={(e) => {
                   setDateFrom(e.target.value);
                 }}
@@ -76,11 +71,9 @@ export const Homepage = () => {
               <input
                 name="fDateTo"
                 id="fDateTo"
-                type="date"
+                type="text"
                 className="form-control-sm"
                 value={dateTo}
-                min="2022-02-20"
-                max="2032-02-20"
                 onChange={(e) => {
                   setDateTo(e.target.value);
                 }}
@@ -99,71 +92,80 @@ export const Homepage = () => {
             <div className="row text-left">
               <div className="col-6 mt-5">
                 <p className="text-center font-weight-bolder">On {dateFrom}</p>
-                <p>
+                <p className="border rounded p-2">
                   Networth:
-                  {" " +
-                    pnlData.networthDate1.networth.toString().split(".")[0]}
+                  <span className="font-weight-bolder">
+                    {" " +
+                      pnlData.networthDate1.networth
+                        .toString()
+                        .split(".")[0]}{" "}
+                    USD
+                  </span>
                 </p>
-                <div className="d-flex align-items-center">
-                  Account tokens:
-                  <div className="px-2">
-                    {pnlData.networthDate1.tokensDisplayed.map((el) => (
-                      <p className="m-0">{el.toString().split(".")[0]}</p>
-                    ))}
-                  </div>
-                </div>
-                <p>
-                  Ehther Holdings:
-                  {" " +
-                    pnlData.networthDate1.ethHoldingsUsd
-                      .toString()
-                      .split(".")[0]}
+                <p className="border rounded p-2">
+                  Ethereum Holdings:
+                  <span className="font-weight-bolder">
+                    {" "}
+                    {" " +
+                      pnlData.networthDate1.ethHoldingsUsd
+                        .toString()
+                        .split(".")[0]}{" "}
+                    USD
+                  </span>
                 </p>
-                <p>
-                  All token Values:
-                  {" " +
-                    pnlData.networthDate1.allTokenUsdValue
-                      .toString()
-                      .split(".")[0]}
+                <p className="border rounded p-2">
+                  All Tokens Value:
+                  <span className="font-weight-bolder">
+                    {" " +
+                      pnlData.networthDate1.allTokenUsdValue
+                        .toString()
+                        .split(".")[0]}{" "}
+                    USD
+                  </span>
                 </p>
               </div>
               <div className="col-6 mt-5">
                 <p className="text-center font-weight-bolder">On {dateTo}</p>
 
-                <p>
+                <p className="border rounded p-2">
                   {" "}
                   Networth:
-                  {" " +
-                    pnlData.networthDate2.networth.toString().split(".")[0]}
+                  <span className="font-weight-bolder">
+                    {" "}
+                    {" " +
+                      pnlData.networthDate2.networth
+                        .toString()
+                        .split(".")[0]}{" "}
+                    USD
+                  </span>
                 </p>
-                <div className="d-flex align-items-center">
-                  Account tokens:
-                  <div className="px-2">
-                    {pnlData.networthDate2.tokensDisplayed.map((el) => (
-                      <p className="m-0">{el.toString().split(".")[0]}</p>
-                    ))}
-                  </div>
-                </div>
-                <p>
-                  Ehther Holdings:
-                  {" " +
-                    pnlData.networthDate2.ethHoldingsUsd
-                      .toString()
-                      .split(".")[0]}
+
+                <p className="border rounded p-2">
+                  Ethereum Holdings:
+                  <span className="font-weight-bolder">
+                    {" "}
+                    {" " +
+                      pnlData.networthDate2.ethHoldingsUsd
+                        .toString()
+                        .split(".")[0]}{" "}
+                    USD
+                  </span>
                 </p>
-                <p>
-                  All token Values:
-                  {
-                    +pnlData.networthDate2.allTokenUsdValue
-                      .toString()
-                      .split(".")[0]
-                  }
+                <p className="border rounded p-2">
+                  All Tokens Value:
+                  <span className="font-weight-bolder">
+                    {" " +
+                      pnlData.networthDate2.allTokenUsdValue
+                        .toString()
+                        .split(".")[0]}{" "}
+                    USD
+                  </span>
                 </p>
               </div>
             </div>
           </>
         )}
-        {errorMsg && <p>{errorMsg}</p>}
+        {!errorMsg && <p>{errorMsg}</p>}
       </div>
     </div>
   );

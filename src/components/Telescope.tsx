@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { telescopeDataArr } from "../types.ts/DataTypes";
 
 export const Telescope = () => {
   const [firstUser, setFirstUser] = useState<string>("");
@@ -8,14 +10,14 @@ export const Telescope = () => {
   const [secondDateFrom, setSecondDateFrom] = useState<string>("2022-11-04");
   const [secondDateTo, setSecondDateTo] = useState<string>("2022-12-04");
   const [displayCheck, setDisplayCheck] = useState<boolean>(false);
+  const [telescopeData, setTelescopeData] =
+    useState<string[]>(telescopeDataArr);
 
   const handleOnBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     e.target.name === "user1"
       ? setFirstUser(e.target.value)
       : setSecondUser(e.target.value);
   };
-
-  let goodToGo: boolean = false;
 
   useEffect(() => {
     firstUser &&
@@ -36,8 +38,10 @@ export const Telescope = () => {
   ]);
 
   useEffect(() => {
-    console.log(secondUser, firstDateFrom);
-  }, [goodToGo]);
+    axios(
+      `https:/pnl/${firstUser}/${firstDateFrom}/${firstDateTo}/${secondUser}/${secondDateFrom}/${secondDateTo}`
+    ).then((res) => setTelescopeData(res.data));
+  }, [displayCheck === true]);
 
   return (
     <div className="col-10 mt-3">
@@ -152,9 +156,25 @@ export const Telescope = () => {
 
       {displayCheck && (
         <div className="text-center mt-5">
-          <span className="border rounded p-2">
-            Telescope output will come back here
-          </span>
+          <div>
+            <p className=" font-italic px-5">
+              The following wallets bought token 1 during the period between{" "}
+              <span className="font-weight-bolder">
+                {firstDateFrom.split("-").reverse().join(" ")} and{" "}
+                {firstDateTo.split("-").reverse().join(" ")}{" "}
+              </span>
+              token 2 during the period between
+              <span className="font-weight-bolder">
+                {" "}
+                {secondDateFrom.split("-").reverse().join(" ")} and{" "}
+                {secondDateTo.split("-").reverse().join(" ")}
+              </span>
+              :
+            </p>
+            {telescopeData.map((el) => (
+              <p className="border-bottom p-2">{el}</p>
+            ))}
+          </div>
         </div>
       )}
     </div>
