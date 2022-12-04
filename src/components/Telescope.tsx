@@ -39,7 +39,7 @@ export const Telescope = () => {
 
   useEffect(() => {
     axios(
-      `https:/pnl/${firstUser}/${firstDateFrom}/${firstDateTo}/${secondUser}/${secondDateFrom}/${secondDateTo}`
+      `http://localhost:3070/telescope/${firstUser}/${firstDateFrom}/${firstDateTo}/${secondUser}/${secondDateFrom}/${secondDateTo}`
     ).then((res) => setTelescopeData(res.data));
   }, [displayCheck === true]);
 
