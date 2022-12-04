@@ -20,16 +20,16 @@ export const Homepage = () => {
 
   //   console.log(today);
 
-  //   useEffect(() => {
-  //     axios("https:/pnl/${userInput}/${dateFrom}/${dateTo}")
-  //       .then((res) => setPnlData(res.data))
-  //       .catch((error) => {
-  //         setUserInput("");
-  //         setErrorMsg("The Crypto Wallet is invalid. Try a different URL.");
-  //       })
-  //       .finally(() => console.log("it's done"));
-  //     console.log(pnlData);
-  //   }, [userInput, dateFrom, dateTo]);
+    useEffect(() => {
+      axios(`http://localhost:3070/pnl/${userInput}/${dateFrom}/${dateTo}`)
+        .then((res) => {setPnlData(res.data); setErrorMsg("")})
+        .catch((error) => {
+          setUserInput("");
+          setErrorMsg("The Crypto Wallet is invalid. Try a different URL.");
+        })
+        .finally(() => console.log("it's done"));
+      console.log(pnlData);
+    }, [userInput, dateFrom, dateTo]);
 
   return (
     <div className="col-10 mt-3">
@@ -163,7 +163,7 @@ export const Homepage = () => {
             </div>
           </>
         )}
-        {errorMsg && <p>{errorMsg}</p>}
+        {!errorMsg && <p>{errorMsg}</p>}
       </div>
     </div>
   );
