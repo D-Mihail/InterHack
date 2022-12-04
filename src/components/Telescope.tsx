@@ -71,11 +71,9 @@ export const Telescope = () => {
               <input
                 name="fDateFrom"
                 id="fDateFrom"
-                type="date"
+                type="text"
                 className="form-control-sm"
                 value={firstDateFrom}
-                min="2022-02-20"
-                max="2032-02-20"
                 onChange={(e) => {
                   setFirstDateFrom(e.target.value);
                 }}
@@ -88,11 +86,9 @@ export const Telescope = () => {
               <input
                 name="fDateTo"
                 id="fDateTo"
-                type="date"
+                type="text"
                 className="form-control-sm"
                 value={firstDateTo}
-                min="2022-02-20"
-                max="2032-02-20"
                 onChange={(e) => {
                   setFirstDateTo(e.target.value);
                 }}
@@ -123,11 +119,9 @@ export const Telescope = () => {
               <input
                 name="sDateFrom"
                 id="sDateFrom"
-                type="date"
+                type="text"
                 className="form-control-sm"
                 value={secondDateFrom}
-                min="2022-02-20"
-                max="2032-02-20"
                 onChange={(e) => {
                   setSecondDateFrom(e.target.value);
                 }}
@@ -140,11 +134,9 @@ export const Telescope = () => {
               <input
                 name="sDateTo"
                 id="sDateTo"
-                type="date"
+                type="text"
                 className="form-control-sm"
                 value={secondDateTo}
-                min="2022-02-20"
-                max="2032-02-20"
                 onChange={(e) => {
                   setSecondDateTo(e.target.value);
                 }}
